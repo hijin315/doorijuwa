@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         flexWrap:"wrap"
       },
       areacontainer:{
-          marginTop:10,
+        marginTop:10,
         justifyContent:'space-around',
         flexDirection: 'row'
       }
