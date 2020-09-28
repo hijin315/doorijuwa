@@ -44,8 +44,9 @@ const StackNavigator = ({navigation,route}) =>{
             <Stack.Screen name="List" component={List}/>
             <Stack.Screen name="Mypage" component={Mypage}/>
             <Stack.Screen name="Choose" component={Choose}/>
-            <Stack.Screen name="Restaurant" component={Restaurant}/>
             <Stack.Screen name="Restaurant2" component={Restaurant2}/>
+            <Stack.Screen name="Restaurant" component={Restaurant}/>
+            
          
 
         </Stack.Navigator>
