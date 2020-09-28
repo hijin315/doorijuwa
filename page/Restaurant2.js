@@ -4,7 +4,7 @@ import { Share } from "react-native";
 import {Linking} from 'react-native'
 
 // 페이지 이동 객체 데이터를 전달해줍니다
-export default function Restaurant({navigation, route}) {
+export default function Restaurant2({navigation, route}) {
     const {name} = route.params;
     const movieURL = "http://store.naver.com/sogum/api/businesses?start=1&display=1&query="+name;
     
@@ -18,12 +18,10 @@ export default function Restaurant({navigation, route}) {
     navigation.setOptions({
         title:'상세 정보'
     })
-    const { name, addr, menu, tag, img } = route.params;
+    const { name, menu, img } = route.params;
         setState({
-        addr:addr,
         name:name,
         menu:menu,
-        tag:tag,
         img:img
         })
     fetch(movieURL)
@@ -36,7 +34,7 @@ export default function Restaurant({navigation, route}) {
     },[]);
   const doShare = () => {
     Share.share({
-    message:`${state.addr} "${state.menu}" 맛집 👉 ${state.name}\n💡${state.tag}\n💡자세히보기 ▶`
+    message:`"${state.menu}" 맛집 👉 ${state.name}\n💡자세히보기 ▶`
     });
     }
   const doCall = (i) => {

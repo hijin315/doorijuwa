@@ -4,27 +4,18 @@ import {ImageBackground,View,Text,StyleSheet,TouchableOpacity} from "react-nativ
 
 //App.js에서 title값을 넘겨줄 계획입니다.
 //그럼 category 컴포넌트에선 값을 받아 표시해주면 됩니다.
-const RestCard = ({img,tag,name,menu,navigation,addr}) => {
-    addr = addr.substr(0, 3);
+const RestCard2 = ({img,name,menu,navigation}) => {
     return (
              <View style={styles.restInfo}>
                       <ImageBackground source={{uri:img}} resizeMode="cover" style={styles.restImage} >
                       </ImageBackground>
                       <View style={styles.restSubInfo}>
-                        { ""+tag!="undefined" && 
-                          <Text numberOfLines={1} style={styles.resttag}>{"# "+tag}</Text>
-                        }
                           <Text style={styles.restname} numberOfLines={1}>{name}</Text>
-                          <Text style={styles.restmainmenu}>{addr} 👉 " {menu} "</Text>
+                          <Text style={styles.restmainmenu}>" {menu} "</Text>
                           <View style={styles.btnContainer}>
-                            <TouchableOpacity>
-                              <View style={styles.btn1}>
-                                  <Text style={styles.text}>찜하기</Text>
-                              </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={ ()=> navigation.navigate("Restaurant",{addr:addr, name: name, menu:menu, tag:tag, img:img})}>
-                              <View style={styles.btn2}>
-                                <Text style={styles.text}>자세히 보러가기</Text>
+                            <TouchableOpacity onPress={ ()=> navigation.navigate("Restaurant2", {name: name, menu:menu,  img:img})}>
+                              <View style={styles.btn}>
+                                <Text style={styles.text}>보러가기 ▶</Text>
                               </View>
                             </TouchableOpacity>
                         </View>
@@ -33,20 +24,13 @@ const RestCard = ({img,tag,name,menu,navigation,addr}) => {
 
     )
 }
-export default RestCard;
+export default RestCard2;
 const styles = StyleSheet.create({
-    resttag:{
-        marginTop:6,
-        fontSize:13,
-        fontWeight:'bold',
-        color:'#E68797'
-      },
-      restname:{
-        fontSize:20,
+    restname:{
+        fontSize:16,
         fontWeight:'bold'
       },
       restmainmenu:{
-      
         fontSize:13,
         padding:2
       },
@@ -64,40 +48,27 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start'
       },
-      btn1:{
-        alignItems:'center',
-        justifyContent:'center',
-        height:34,
-        width:55,
-        backgroundColor:'#E68797',
-        borderColor:'#fff',
-        borderWidth:1,
-        borderRadius:10,
-      },
-      btn2:{
+      btn:{
         alignItems:'center',
         justifyContent:'center',
         height:34,
         marginLeft:10,
-        width:110,
-        backgroundColor:'#E68797',
-        borderColor:'#fff',
-        borderWidth:1,
-        borderRadius:10,
       },
       restInfo:{
-        borderWidth:1,
-        height:110,
+        padding:5,
         marginLeft:10,
-        marginRight:10,
+        marginTop:5,
+        width:195,
+        borderWidth:2,
+        height:100,
         borderRadius:10,
         borderColor:'#E68797',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        padding:10,
+        justifyContent: 'flex-start'
       },
       restSubInfo:{
+        alignItems:'center',
         flex:1
       }
 });

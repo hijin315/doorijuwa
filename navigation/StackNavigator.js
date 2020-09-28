@@ -9,6 +9,7 @@ import Mypage from '../page/Mypage';
 import Choose from '../page/Choose';
 import TabNavigator from '../navigation/TabNavigator';
 import Restaurant from '../page/Restaurant';
+import Restaurant2 from '../page/Restaurant2';
 
 
 
@@ -44,6 +45,7 @@ const StackNavigator = ({navigation,route}) =>{
             <Stack.Screen name="Mypage" component={Mypage}/>
             <Stack.Screen name="Choose" component={Choose}/>
             <Stack.Screen name="Restaurant" component={Restaurant}/>
+            <Stack.Screen name="Restaurant2" component={Restaurant2}/>
          
 
         </Stack.Navigator>

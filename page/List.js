@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import {ActivityIndicator, FlatList, StyleSheet, Text, View,ScrollView } from 'react-native';
+import {ActivityIndicator, FlatList, StyleSheet, Text, View,ScrollView, refreshing } from 'react-native';
 //component 폴더에 만든 ButtonCard 컴포넌트를 불러옵니다.
 import RestCard from "../components/RestCard"
 import Category from "../components/Category"
@@ -11,7 +11,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 export default function List({navigation,route}) {
   const { area } = route.params;
   const movieURL = "http://store.naver.com/sogum/api/businesses?start=1&display=20&query="+area+"+맛집&sortingOrder=reviewCount";
-  
    //data.json 데이터 구조를 보면 딕셔너리 리스트 복합 구조입니다.
   //question 키값에 문제들이 리스트 형태로 존재합니다.
   //그래서 상태에 문제 데이터를 넣어 초기화 했습니다.
@@ -22,7 +21,9 @@ export default function List({navigation,route}) {
   //category.json 데이터 역시 data란 키에 물려있는 리스트 데이터이므로
   //곧바로 categoryState 상태를 데이터와 함께 초기화 했습니다.
   const [categoryState,setCategoryState] = useState([])
+
   //선택한 카테고리에 맞는 문제 데이터를 저장하고 관리하는 상태입니다.
+
  
   useEffect(()=>{
     navigation.setOptions({
@@ -52,7 +53,7 @@ export default function List({navigation,route}) {
            <MaterialCommunityIcons
             size={40}
             name="weather-sunny"
-            color="white"
+            color="black"
           /></View>
         </View>
         <View style={styles.categoryInfo}>
