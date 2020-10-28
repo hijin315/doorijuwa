@@ -1,57 +1,65 @@
 import React,{useState,useEffect} from "react";
 import {SafeAreaView, ImageBackground,ActivityIndicator, Text, StyleSheet, Platform, View, ScrollView ,FlatList} from 'react-native';
-
-const movieURL = "http://store.naver.com/sogum/api/businesses?start=2&display=3&query=관악구+맛집&sortingOrder=reviewCount";
-
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 // 페이지 이동 객체 데이터를 전달해줍니다
-export default function Mypage() {
+export default function Mypage({navigation}) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
   useEffect(()=>{
-    fetch(movieURL)
-      .then((response) => response.json())
-      .then((json) => {
-        setData(json.items);
-      })
-      .catch((error) => alert(error))
-      .finally(() => setLoading(false));
+     setLoading(false);
   },[]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       {isLoading ? (
         <ActivityIndicator/>
       ) : ( 
-        <View>
-          <ImageBackground source={{uri:"http://ldb.phinf.naver.net/20160412_108/14604362228032gJlV_JPEG/11849078_03.jpg"}} resizeMode="cover" style={styles.restImage} >
-          </ImageBackground>
-          <Text style={styles.title}>title</Text>
-          <View style={{borderBottomWidth :1, marginBottom : 12}}></View>
-          <FlatList 
-            data={data}
-            keyExtractor={({ id }, index) => id}
-            renderItem={({ item }) => (
-              <View style={{ paddingBottom: 10 }}>
-                <Text style={styles.movieText}>
-                  {item.name},
-                  {item.category}
-                </Text>
-              </View>
-            )}
-          />
-          <Text style={styles.description}>ddd</Text>
+        <View style={{flex:1}}>
+        <View style={{marginTop:35}}> 
+          <Text style={{fontSize:27, marginTop:30, margin:20, fontWeight:'bold', alignItems:'flex-start', color:'#fff'}}>마이페이지</Text>
+          <View style={{alignItems:'center'}}>
+            <ImageBackground imageStyle = { {  borderRadius : 35  } } source={{uri:"https://firebasestorage.googleapis.com/v0/b/durijuwa-33187.appspot.com/o/KakaoTalk_20201015_061156192.jpg?alt=media&token=6784683a-3bf2-49df-a020-eb386d587535"}} resizeMode="cover" style={styles.restImage} >
+            </ImageBackground> 
+            <Text>편집</Text>
+          </View>
+          <View style={{flexDirection:"row", justifyContent:'center',marginBottom:15}}>
+            <Text style={{fontSize:18,fontWeight:'bold', color:'#353535'}}>오희진</Text>
+            <Text> 님, 반갑습니다!!</Text>
+          </View>
+          </View>
+          <View style={{backgroundColor:'#fff', flex:1}}>
+            <TouchableOpacity onPress={() => navigation.navigate("Like", { datas: data })}>
+              <Text style={styles.listcontainer}>🏠 우리동네 설정하기</Text>
+              <View style={{borderBottomWidth :1, borderColor:'#E68797'}}></View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Like", { datas: data })}>
+              <Text style={styles.listcontainer}>💕 찜한 목록</Text>
+              <View style={{borderBottomWidth :1, borderColor:'#E68797'}}></View>
+            </TouchableOpacity>
+            <View>
+              <Text style={styles.listcontainer}>💬 1:1 문의하기</Text>
+              <View style={{borderBottomWidth :1, borderColor:'#E68797'}}></View>
+            </View>
+            <View>
+              <Text style={styles.listcontainer}>🔧 설정</Text>
+              <View style={{borderBottomWidth :1, borderColor:'#E68797'}}></View>
+            </View>
+            <View>
+              <Text style={styles.listcontainer}>📃 어플 정보</Text>
+              <View style={{borderBottomWidth :1, borderColor:'#E68797'}}></View>
+            </View>
+          </View>
           </View>
         )}
-      </SafeAreaView>
+      </View>
   );
 };
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      alignItems:"center",
-      marginTop:48
+      backgroundColor:'#E68797',
+      flex: 1
     },
     movieText:{
       fontSize: 26,
@@ -69,6 +77,13 @@ const styles = StyleSheet.create({
     },
     restImage:{
       width: 130,
-      height:130
+      height:130,
+      margin:13
+    },
+    listcontainer:{
+      fontSize: 17, 
+      marginBottom: 18, 
+      marginTop: 18, 
+      marginLeft: 10
     }
   });

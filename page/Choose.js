@@ -24,7 +24,7 @@ export default function Choose({navigation}) {
             </View>
             <View style={styles.vScrollView}>
                 {state.map((data,i)=>{
-                    return <Area key={i} navigation={navigation} area={data.area} img={data.img}/>
+                    return <Area key={i} navigation={navigation} area={data.area}  img={data.img}/>
                   })}
             </View>
             <View style={styles.areacontainer}>
@@ -32,7 +32,7 @@ export default function Choose({navigation}) {
             </View>
             <View style={styles.vScrollView}>
                 {state2.map((data,i)=>{
-                    return <Area key={i} navigation={navigation} area={data.area}  img={data.img}/>
+                    return <Area key={i} navigation={navigation} area={data.area} name = {data.name} img={data.img}/>
                   })}
             </View>
         </ScrollView>

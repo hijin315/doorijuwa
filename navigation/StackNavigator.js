@@ -10,7 +10,7 @@ import Choose from '../page/Choose';
 import TabNavigator from '../navigation/TabNavigator';
 import Restaurant from '../page/Restaurant';
 import Restaurant2 from '../page/Restaurant2';
-
+import Like from '../page/Like';
 
 
 //스택 네비게이션 라이브러리가 제공해주는 여러 기능이 담겨있는 객체를 사용합니다
@@ -46,7 +46,7 @@ const StackNavigator = ({navigation,route}) =>{
             <Stack.Screen name="Choose" component={Choose}/>
             <Stack.Screen name="Restaurant2" component={Restaurant2}/>
             <Stack.Screen name="Restaurant" component={Restaurant}/>
-            
+            <Stack.Screen name="Like" component={Like}/>
          
 
         </Stack.Navigator>
