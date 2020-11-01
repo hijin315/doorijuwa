@@ -1,42 +1,44 @@
 import React,{useState, useEffect} from 'react';
-import {ActivityIndicator, FlatList, StyleSheet, Text, View,ScrollView, refreshing, LogBox } from 'react-native';
+import {ActivityIndicator, FlatList, StyleSheet, Text, View,ScrollView } from 'react-native';
 //component 폴더에 만든 ButtonCard 컴포넌트를 불러옵니다.
 import RestCard from "../components/RestCard"
 import Category from "../components/Category"
 import category from "../category.json"
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {firebase_db} from "../firebaseConfig"
-import axios from "axios"
+
+
 
 export default function List({navigation,route}) {
   const { area } = route.params;
-  // const movieURL = "http://store.naver.com/sogum/api/businesses?start=1&display=20&query="+area+"+맛집&sortingOrder=reviewCount";
-   
+  const restaurantUrl = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20맛집&displayCount=20&lang=ko";
+
+   //data.json 데이터 구조를 보면 딕셔너리 리스트 복합 구조입니다.
+  //question 키값에 문제들이 리스트 형태로 존재합니다.
+  //그래서 상태에 문제 데이터를 넣어 초기화 했습니다.
   const [isLoading, setLoading] = useState(true);
   const [state, setState] = useState([])
   const [data, setData] = useState([]);
-  const [listState, setListState] = useState([])
+
   //category.json 데이터 역시 data란 키에 물려있는 리스트 데이터이므로
   //곧바로 categoryState 상태를 데이터와 함께 초기화 했습니다.
   const [categoryState,setCategoryState] = useState([])
-
   //선택한 카테고리에 맞는 문제 데이터를 저장하고 관리하는 상태입니다.
-  
- 
+
   useEffect(()=>{
     navigation.setOptions({
-        title:'목록'
+        title:' '
         })
-        firebase_db.ref('/data/'+area).once('value').then((snapshot) => {
-          console.log("파이어베이스에서 데이터 가져왔습니다!!")
-          let list = snapshot.val(); 
-          setCategoryState(category.data)
-          setListState(list)
-          setLoading(false)
-        });
-    },[]);
-    
-    
+    setCategoryState(category.data)
+    fetch(restaurantUrl)
+      .then((response) => response.json())
+      .then((json) => {
+        setData(json.result.place.list);
+      })
+      .catch((error) => alert(error))
+      .finally(() => setLoading(false));
+  },[]);
+
+
   return (
     <View style={styles.container2}>
       {isLoading ? (
@@ -50,7 +52,7 @@ export default function List({navigation,route}) {
            <MaterialCommunityIcons
             size={40}
             name="weather-sunny"
-            color="black"
+            color="white"
           /></View>
         </View>
         <View style={styles.categoryInfo}>
@@ -61,22 +63,27 @@ export default function List({navigation,route}) {
                 })}
             </ScrollView>
         </View>
+
         <ScrollView>
                 <View>
-                  {listState.map((data,i)=>{
-		                 //카드 버튼에서 사용해야 하므로, navigation을 건네줍니다
-                    return <RestCard key={i} 
-                        data={data}
-                        address = {data.address}
-												name={data.name} 
-												imageUrl={data.imageUrl} 
-												navigation={navigation}/>
-                  })}
-            
+                <ScrollView style={styles.restWrap}>
+                <FlatList 
+                    data={data}
+                    keyExtractor={({ id }, index) => id}
+                    renderItem={({ item }) => (
+                        <View>
+                        {item.category !="카페,디저트" && item.category != "카페" && item.category != "베이커리" && 
+                        <View style={{ paddingBottom: 10 }}>
+                                <RestCard navigation={navigation} tag={item.microReview} name={item.name} menu={item.categoryInfo} img={item.thumUrl} addr={item.abbrAddress}/>
+                        </View>
+                        }
+                        </View>
+                    )}
+                  />
+                </ScrollView>
              </View>
         </ScrollView>
-    
-        
+
     </View>
      )}
      </View>
@@ -132,4 +139,4 @@ const styles = StyleSheet.create({
     marginTop:5
   }
 
-});
+}); 

@@ -12,6 +12,7 @@ import * as Font from "expo-font";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
 import { StatusBar } from 'expo-status-bar';
+import Main from './page/Main';
 
 export default function App() {
 
@@ -42,13 +43,11 @@ export default function App() {
   //return <Loading/>
   // return <Question/>
   return isLoading ? <AppLoading startAsync={funcStart} onError={funcError} onFinish={funcFinish} /> : (
-    // <>
-    //   <StatusBar style="black" />
-    //   <Main/>
-    // </>
+  <>
     <NavigationContainer>
       <StatusBar style="light" />
       <StackNavigator/>
    </NavigationContainer>
+  </>
   )
 }
