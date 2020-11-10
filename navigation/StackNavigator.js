@@ -11,6 +11,8 @@ import TabNavigator from '../navigation/TabNavigator';
 import Restaurant from '../page/Restaurant';
 import Restaurant2 from '../page/Restaurant2';
 import Like from '../page/Like';
+import Login from '../page/Login';
+
 
 
 //스택 네비게이션 라이브러리가 제공해주는 여러 기능이 담겨있는 객체를 사용합니다
@@ -39,6 +41,7 @@ const StackNavigator = ({navigation,route}) =>{
             {/* 컴포넌트를 페이지로 만들어주는 엘리먼트에 끼워 넣습니다. 이 자체로 이제 페이지 기능을 합니다*/}
 
             {/* 메인페이지와 푼 문제들을 확인하는 히스토리 페이지가 담겨 있는 탭 페이지, 즉 탭 네비게이터를 넣습니다*/}
+            
             <Stack.Screen name="TabNavigator" component={TabNavigator}/>
             <Stack.Screen name="Main" component={Main}/>
             <Stack.Screen name="List" component={List}/>
@@ -47,7 +50,7 @@ const StackNavigator = ({navigation,route}) =>{
             <Stack.Screen name="Restaurant2" component={Restaurant2}/>
             <Stack.Screen name="Restaurant" component={Restaurant}/>
             <Stack.Screen name="Like" component={Like}/>
-         
+            
 
         </Stack.Navigator>
     )

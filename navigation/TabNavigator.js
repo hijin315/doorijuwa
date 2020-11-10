@@ -54,7 +54,7 @@ const TabNavigator = ({navigation,route}) =>{
               backgroundColor: "white",
               borderTopColor: "#E68797",
               borderTopWidth:1.3,
-              height:58
+              height:70
             }
         }}
     >

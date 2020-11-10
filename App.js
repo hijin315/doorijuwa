@@ -3,22 +3,26 @@ import React,{useState} from 'react';
 //메인에 세팅할 네비게이션 도구들을 가져옵니다.
 import {NavigationContainer} from '@react-navigation/native';
 import StackNavigator from './navigation/StackNavigator'
-
+import { createStackNavigator } from '@react-navigation/stack';
 import { AppLoading } from 'expo';
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+const Tab = createBottomTabNavigator();
 //expo install expo-font 로 설치
 import * as Font from "expo-font";
 //expo install @expo/vector-icons 로 설치
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
 import { StatusBar } from 'expo-status-bar';
+import Login from './page/Login';
 import Main from './page/Main';
+import List from './page/List';
+import Mypage from './page/Mypage';
 
 export default function App() {
 
   //로딩중에 대한 상태 관리 === 처음엔 당연히 로딩중이니 값이 true 겠죠?
   const [isLoading,setIsLoading] = useState(true)
-
+  const Stack = createStackNavigator();
   //배열에 담긴 폰트들을 차례대로 하나씩 앱에 적재 시키는 함수
   const cacheFonts = fonts => fonts.map(font => Font.loadAsync(font));
 
@@ -39,15 +43,40 @@ export default function App() {
     setIsLoading(false)
   }
   console.disableYellowBox = true;
-
+  function HomeTabs() {
+    return (
+      <>
+        <StackNavigator/>
+      </>
+    );
+  }
   //return <Loading/>
   // return <Question/>
   return isLoading ? <AppLoading startAsync={funcStart} onError={funcError} onFinish={funcFinish} /> : (
+  // <>
+  //   <NavigationContainer>
+  //     <StatusBar style="light" />
+  //     <StackNavigator/>
+  //  </NavigationContainer>
+  // </>
+//  <Login/>
   <>
     <NavigationContainer>
-      <StatusBar style="light" />
-      <StackNavigator/>
-   </NavigationContainer>
+      <Stack.Navigator
+       screenOptions={{
+        headerStyle: {
+            backgroundColor: "black",
+            borderBottomColor: "black",
+            shadowColor: "black",
+            height:0
+        },
+        headerTintColor: "#FFFFFF",
+        headerBackTitleVisible: false
+         }}   >
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Main" component={HomeTabs} />
+      </Stack.Navigator>
+    </NavigationContainer>
   </>
   )
 }

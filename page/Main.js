@@ -6,7 +6,7 @@ import RestCard2 from "../components/RestCard2"
 
 // 페이지 이동 객체 데이터를 전달해줍니다
 export default Main = ({navigation}) => {
-  const area = '성북동'
+  const area = '역삼동'
   const restURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20맛집&displayCount=15&lang=ko";
   const cafeURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20카페&lang=ko";
   const playURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20놀거리";
@@ -56,7 +56,7 @@ export default Main = ({navigation}) => {
         <View style={styles.container3}>
           <Text style={styles.areafont}>우리동네 추천 장소👍</Text>
           <View style={{flexDirection:'row', alignItems:'center', marginTop:6}}>
-          <Text style={{fontSize:17}}>사당동</Text>
+          <Text style={{fontSize:17}}>역삼동</Text>
           <TouchableOpacity > 
             <View style={styles.editbtn}>
                 <Text>변경</Text>
@@ -110,6 +110,7 @@ export default Main = ({navigation}) => {
                   />
           </ScrollView>
         </View>
+        <Text style={{color:'red', marginLeft:10, marginTop:10, fontSize:12}}>* 상가가 많지 않은 지역의 경우 데이터가 적을 수 있습니다!</Text>
         </ScrollView>
     </View>
    )}

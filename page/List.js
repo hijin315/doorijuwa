@@ -72,9 +72,9 @@ export default function List({navigation,route}) {
                     keyExtractor={({ id }, index) => id}
                     renderItem={({ item }) => (
                         <View>
-                        {item.category !="카페,디저트" && item.category != "카페" && item.category != "베이커리" && 
+                        {item.category !="카페,디저트" && item.category != "카페" && item.category != "베이커리" && item.menuInfo != null && 
                         <View style={{ paddingBottom: 10 }}>
-                                <RestCard navigation={navigation} tag={item.microReview} name={item.name} menu={item.categoryInfo} img={item.thumUrl} addr={item.abbrAddress}/>
+                                <RestCard navigation={navigation} tag={item.microReview} name={item.name} menu={item.menuInfo} img={item.thumUrl} addr={item.address}/>
                         </View>
                         }
                         </View>

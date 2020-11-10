@@ -1,21 +1,31 @@
 import React,{useState,useEffect} from 'react';
-import {ImageBackground,View,Text,StyleSheet,TouchableOpacity} from "react-native";
+import {Image,View,Text,StyleSheet,TouchableOpacity} from "react-native";
 
 
 //App.js에서 title값을 넘겨줄 계획입니다.
 //그럼 category 컴포넌트에선 값을 받아 표시해주면 됩니다.
 const RestCard = ({img,tag,name,menu,navigation,addr}) => {
-    addr = addr.substr(0, 3);
+    let addr2 = ""
+    menu = menu.split('|')[0]
+    
+    if(addr != null){
+      addr2 = addr.split(' ')[2]
+    }
+
     return (
              <View style={styles.restInfo}>
-                      <ImageBackground source={{uri:img}} resizeMode="cover" style={styles.restImage} >
-                      </ImageBackground>
+                      <Image source={ img != null
+                        ? {uri:img}
+                        : require('../images/noImage.jpg')} resizeMode="cover" style={styles.restImage} >
+                      </Image>
                       <View style={styles.restSubInfo}>
-                        { ""+tag!="undefined" && 
+                        { tag != "" && 
                           <Text numberOfLines={1} style={styles.resttag}>{"# "+tag}</Text>
                         }
                           <Text style={styles.restname} numberOfLines={1}>{name}</Text>
-                          <Text style={styles.restmainmenu}>{addr} 👉 " {menu} "</Text>
+                   
+                          <Text style={styles.restmainmenu}>{addr2} 👉 {menu}</Text>
+                          
                           <View style={styles.btnContainer}>
                             <TouchableOpacity>
                               <View style={styles.btn1}>
@@ -46,7 +56,6 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
       },
       restmainmenu:{
-
         fontSize:13,
         padding:2
       },
@@ -86,8 +95,8 @@ const styles = StyleSheet.create({
         borderRadius:10,
       },
       restInfo:{
-        borderWidth:1,
-        height:110,
+        borderWidth:2,
+        height:120,
         marginLeft:10,
         marginRight:10,
         borderRadius:10,

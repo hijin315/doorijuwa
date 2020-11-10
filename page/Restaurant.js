@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import {SafeAreaView, ImageBackground,ActivityIndicator, Text, StyleSheet, Platform, View, ScrollView ,FlatList, TouchableOpacity} from 'react-native';
+import {SafeAreaView, Image,ActivityIndicator, Text, StyleSheet, Platform, View, ScrollView ,FlatList, TouchableOpacity} from 'react-native';
 import { Share } from "react-native";
 import {Linking} from 'react-native'
 
@@ -59,7 +59,10 @@ const getMap = (i) => {
                 <Text style={styles.name}>" {item.name} "</Text>
                 </View>
                 <View style={{flex: 1, alignItems:"center"}}> 
-                <ImageBackground source={{uri:item.thumUrl}} resizeMode="cover" style={styles.restImage} ></ImageBackground>
+                <Image source={ item.thumUrl != null
+                        ? {uri:item.thumUrl}
+                        : require('../images/noImage.jpg')} resizeMode="cover" style={styles.restImage} >
+                      </Image>
                     <View style={{alignItems:'flex-start', padding:20}}>
                         { ""+item.menuInfo!="undefined" && 
                                 <Text style={styles.text}>👉 메뉴 : " {item.menuInfo} "</Text>}
