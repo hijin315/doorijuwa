@@ -36,6 +36,7 @@ const LikePage = ({navigation}) => {
         {likeState.map((data,i)=>{
              return <RestCardForLike key={i} 
                     data={data}
+                    tag={data.microReview}
                     menu = {data.menu}
                     address = {data.address}
                     name={data.name} 

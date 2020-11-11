@@ -57,9 +57,8 @@ const Login = ({navigation}) => {
                 .signInWithEmailAndPassword(loginID, loginPW)
                 .then(user => {
                  //once we are logged in , we move to the home screen
-                 let uid = user.uid
-                 console.log(uid)
-                 navigation.navigate("Main", { user })
+                 const uid = user.user.uid
+                 navigation.navigate("Main", { uid : uid })
                  
                 })
                 .catch(err => {

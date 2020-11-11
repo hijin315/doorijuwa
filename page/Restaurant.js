@@ -1,7 +1,10 @@
 import React,{useState,useEffect} from "react";
-import {SafeAreaView, Image,ActivityIndicator, Text, StyleSheet, Platform, View, ScrollView ,FlatList, TouchableOpacity} from 'react-native';
+import {SafeAreaView, Image,ActivityIndicator, Text, StyleSheet, Platform, View, Alert ,FlatList, TouchableOpacity} from 'react-native';
 import { Share } from "react-native";
 import {Linking} from 'react-native'
+import Constants from 'expo-constants';
+import {firebase_db} from "../firebaseConfig"
+
 
 // 페이지 이동 객체 데이터를 전달해줍니다
 export default function Restaurant({navigation, route}) {
@@ -34,7 +37,7 @@ export default function Restaurant({navigation, route}) {
   },[]);
   const doShare = () => {
     Share.share({
-    message:`${state.addr} "${state.menu}" 맛집 👉 ${state.name}\n💡${state.tag}\n💡자세히보기 ▶`
+    message:`"${state.name}"\n대표메뉴 👉 "${state.menu}"\n주소 👉 ${state.addr}\n\n설명 💡 ${state.tag}\n`
     });
     }
 const doCall = (i) => {
@@ -42,6 +45,23 @@ const doCall = (i) => {
 }
 const getMap = (i) => {
     Linking.openURL(i)
+}
+const doLike = (data) => {
+  const user_id = Constants.installationId;   
+  const new_like = {
+    //spread 연산과 객체 리터럴 문법을 오랜만에 한번 써봅니다... 
+    //기억안나시는 분들은 1주차 spread 연산자 부분을 복습!!
+    ...data,
+    user_id      
+  }
+  firebase_db.ref('/likes/'+user_id+'/'+ data.id).set(new_like,function(error){
+      console.log(error)
+      if(error == null){
+          //저장에 문제가 없을 경우에만 완료 처리!
+          Alert.alert("찜 완료!💖")
+
+        }
+  });
 }
   return (
     <View style={styles.container}>
@@ -85,7 +105,7 @@ const getMap = (i) => {
                                         <Text style={styles.text}>전화하기</Text>
                                     </View>
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>doLike(item)}>
                                 <View style={styles.btn}>
                                     <Text style={styles.text}>찜하기</Text>
                                 </View>

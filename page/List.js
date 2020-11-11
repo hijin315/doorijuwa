@@ -6,8 +6,6 @@ import Category from "../components/Category"
 import category from "../category.json"
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-
-
 export default function List({navigation,route}) {
   const { area } = route.params;
   const restaurantUrl = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20맛집&displayCount=20&lang=ko";
@@ -48,10 +46,10 @@ export default function List({navigation,route}) {
        <View style={styles.areaInfo}>
            <Text style={styles.areaname}>{area}</Text>
            <View style={styles.areaweather}>
-           <Text style={styles.areatemp}>20º</Text>
+           <Text style={styles.areatemp}>2º</Text>
            <MaterialCommunityIcons
             size={40}
-            name="weather-sunny"
+            name="weather-cloudy"
             color="white"
           /></View>
         </View>

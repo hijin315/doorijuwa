@@ -13,7 +13,7 @@ const RestCard2 = ({img,name,menu,navigation}) => {
                           <Text style={styles.restname} numberOfLines={1}>{name}</Text>
                           <Text style={styles.restmainmenu}>" {menu} "</Text>
                           <View style={styles.btnContainer}>
-                            <TouchableOpacity onPress={ ()=> navigation.navigate("Restaurant2", {name: name, menu:menu,  img:img})}>
+                            <TouchableOpacity onPress={ ()=> navigation.navigate("Restaurant", {name: name, menu:menu,  img:img})}>
                               <View style={styles.btn}>
                                 <Text style={styles.text}>보러가기 ▶</Text>
                               </View>
