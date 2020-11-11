@@ -36,11 +36,13 @@ const LikePage = ({navigation}) => {
         {likeState.map((data,i)=>{
              return <RestCardForLike key={i} 
                     data={data}
+                    menu = {data.menu}
                     address = {data.address}
                     name={data.name} 
-                    imageUrl={data.imageUrl} 
+                    imageUrl={data.thumUrl} 
                     navigation={navigation}/>
         })}
+             
         </View>
     </View>)
 }

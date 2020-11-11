@@ -74,11 +74,12 @@ const getMap = (i) => {
                         { ""+item.tel!="undefined" &&
                                 <Text style={styles.text}>👉 번호 :  "{item.tel} "</Text>}
                          <View style={{flexDirection:'row', justifyContent:'center'}}>
+                         { ""+item.naverBookingUrl!="" &&
                             <TouchableOpacity onPress={()=>getMap(item.naverBookingUrl)}>
                                     <View style={styles.btn}>
                                         <Text style={styles.text}>예약하기</Text>
                                     </View>
-                                </TouchableOpacity>
+                                </TouchableOpacity>}
                             <TouchableOpacity onPress={()=>doCall(item.tel)}>
                                     <View style={styles.btn}>
                                         <Text style={styles.text}>전화하기</Text>

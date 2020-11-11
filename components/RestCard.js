@@ -1,15 +1,35 @@
 import React,{useState,useEffect} from 'react';
-import {Image,View,Text,StyleSheet,TouchableOpacity} from "react-native";
-
+import {Image,View,Text,StyleSheet,TouchableOpacity, Alert } from "react-native";
+import {firebase_db} from "../firebaseConfig"
+//사용자 유니크 아이디 생성 도구
+import Constants from 'expo-constants';
+import { add } from 'react-native-reanimated';
 
 //App.js에서 title값을 넘겨줄 계획입니다.
 //그럼 category 컴포넌트에선 값을 받아 표시해주면 됩니다.
-const RestCard = ({img,tag,name,menu,navigation,addr}) => {
+const RestCard = ({img,tag,name,menu,navigation,addr,items}) => {
     let addr2 = ""
     menu = menu.split('|')[0]
     
     if(addr != null){
       addr2 = addr.split(' ')[2]
+    }
+    const doLike = (data) => {
+      const user_id = Constants.installationId;   
+      const new_like = {
+        //spread 연산과 객체 리터럴 문법을 오랜만에 한번 써봅니다... 
+        //기억안나시는 분들은 1주차 spread 연산자 부분을 복습!!
+        ...data,
+        user_id      
+      }
+      firebase_db.ref('/likes/'+user_id+'/'+ items.id).set(new_like,function(error){
+          console.log(error)
+          if(error == null){
+              //저장에 문제가 없을 경우에만 완료 처리!
+              Alert.alert("찜 완료!💖")
+
+            }
+      });
     }
 
     return (
@@ -27,7 +47,7 @@ const RestCard = ({img,tag,name,menu,navigation,addr}) => {
                           <Text style={styles.restmainmenu}>{addr2} 👉 {menu}</Text>
                           
                           <View style={styles.btnContainer}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>doLike(items)}>
                               <View style={styles.btn1}>
                                   <Text style={styles.text}>찜하기</Text>
                               </View>

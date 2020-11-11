@@ -8,10 +8,12 @@ import Constants from 'expo-constants';
 
 //App.js에서 title값을 넘겨줄 계획입니다.
 //그럼 category 컴포넌트에선 값을 받아 표시해주면 됩니다.
-const RestCardForLike = ({ name, imageUrl, navigation, data, address }) => {
-  address = address.substr(0, 3)
+const RestCardForLike = ({ name, imageUrl, navigation, data, address, menu}) => {
+  let addr2 = ""
 
-
+  if(address != null){
+    addr2 = address.split(' ')[2]
+  }
   const doLike = (data) => {
     //d는 onPress로부터 넘겨받은 data를 함수 안에서 새롭게 부른 이름입니다
 
@@ -25,7 +27,7 @@ const RestCardForLike = ({ name, imageUrl, navigation, data, address }) => {
     firebase_db.ref('/likes/'+user_id+'/'+ data.id).remove();
     Alert.alert("삭제 완료!");
 }
-    
+
   
   return (
     <View style={styles.restInfo}>
@@ -38,14 +40,14 @@ const RestCardForLike = ({ name, imageUrl, navigation, data, address }) => {
           <Text numberOfLines={1} style={styles.resttag}>{"# " + data.microReview}</Text>
         }
         <Text style={styles.restname} numberOfLines={1}>{name}</Text>
-        <Text style={styles.restmainmenu}>{address} 👉 " {data.category} "</Text>
+        <Text style={styles.restmainmenu}>{addr2} 👉 " {data.category} "</Text>
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.zzimButton} onPress={()=>doLike(data)}> 
             <View style={styles.btn1}>
               <Text style={styles.text}>삭제</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Restaurant", { datas: data })}>
+          <TouchableOpacity onPress={() => navigation.navigate("Restaurant2", { name2 : data.name })}>
             <View style={styles.btn2}>
               <Text style={styles.text}>자세히 보러가기</Text>
             </View>

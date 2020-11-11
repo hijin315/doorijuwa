@@ -4,8 +4,11 @@ import { Share } from "react-native";
 import {Linking} from 'react-native'
 
 // 페이지 이동 객체 데이터를 전달해줍니다
-export default function Restaurant2({navigation, route}) {
-    const {name} = route.params;
+export default function Restaurant2({navigation,route}) {
+    const {name2} = route.params;
+    let name = name2.name
+
+
     const restaurantUrl = "https://map.naver.com/v5/api/search?caller=pcweb&query="+name+"&displayCount=1";
 
     const [isLoading, setLoading] = useState(true);
@@ -74,11 +77,12 @@ const getMap = (i) => {
                         { ""+item.tel!="undefined" &&
                                 <Text style={styles.text}>👉 번호 :  "{item.tel} "</Text>}
                          <View style={{flexDirection:'row', justifyContent:'center'}}>
+                         { ""+item.naverBookingUrl!="" &&
                             <TouchableOpacity onPress={()=>getMap(item.naverBookingUrl)}>
                                     <View style={styles.btn}>
                                         <Text style={styles.text}>예약하기</Text>
                                     </View>
-                                </TouchableOpacity>
+                                </TouchableOpacity>}
                             <TouchableOpacity onPress={()=>doCall(item.tel)}>
                                     <View style={styles.btn}>
                                         <Text style={styles.text}>전화하기</Text>
