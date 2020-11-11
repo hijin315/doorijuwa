@@ -30,7 +30,7 @@ export default function Mypage({navigation}) {
           </View>
           </View>
           <View style={{backgroundColor:'#fff', flex:1}}>
-            <TouchableOpacity onPress={() => navigation.navigate("Like", { datas: data })}>
+            <TouchableOpacity onPress={() => navigation.navigate("ChooseArea", { datas: data })}>
               <Text style={styles.listcontainer}>🏠 우리동네 설정하기</Text>
               <View style={{borderBottomWidth :1, borderColor:'#E68797'}}></View>
             </TouchableOpacity>

@@ -1,6 +1,22 @@
 {
     "data": [
-        {"area":"강남구","img":"https://www.tongyeong.go.kr/_res/portal/img/content/c00044_img1.png"},
+        {"area":"강남구","img":"https://www.tongyeong.go.kr/_res/portal/img/content/c00044_img1.png",
+        "dong":[
+            {"name":"압구정동"},
+            {"name":"신사동"},
+            {"name":"논현동"},
+            {"name":"청담동"},
+            {"name":"삼성동"},
+            {"name":"역삼동"},
+            {"name":"대치동"},
+            {"name":"도곡동"},
+            {"name":"일원동"},
+            {"name":"수서동"},
+            {"name":"개포동"},
+            {"name":"자곡동"},
+            {"name":"율현동"},
+            {"name":"세곡동"}
+        ]},
         {"area":"강동구","img":"https://firebasestorage.googleapis.com/v0/b/durijuwa-33187.appspot.com/o/data_logo_1165844418_windflower.jpg?alt=media&token=6041aea8-a34e-4c8d-8dd2-8c64162cfded"},
         {"area":"강북구","img":"https://firebasestorage.googleapis.com/v0/b/durijuwa-33187.appspot.com/o/%EB%AC%B4%EC%A0%9C%20(11).jpg?alt=media&token=94fd2d6a-697c-43ed-939d-9646be1b9e34"},
         {"area":"강서구","img":"https://2.bp.blogspot.com/-nUHm0el_7j8/VIF-ppk8IKI/AAAAAAAAlAU/AeLWdf6gQYs/s1600/%EA%B0%95%EC%84%9C%EA%B5%AC%EC%B2%AD%2B%EB%A1%9C%EA%B3%A0.png"},

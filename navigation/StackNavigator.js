@@ -12,6 +12,7 @@ import Restaurant from '../page/Restaurant';
 import Restaurant2 from '../page/Restaurant2';
 import Like from '../page/Like';
 import Login from '../page/Login';
+import ChooseArea from '../page/ChooseArea';
 
 
 
@@ -50,7 +51,7 @@ const StackNavigator = ({navigation,route}) =>{
             <Stack.Screen name="Restaurant2" component={Restaurant2}/>
             <Stack.Screen name="Restaurant" component={Restaurant}/>
             <Stack.Screen name="Like" component={Like}/>
-            
+            <Stack.Screen name="ChooseArea" component={ChooseArea}/>
 
         </Stack.Navigator>
     )
