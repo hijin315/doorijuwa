@@ -6,10 +6,8 @@ import {Linking} from 'react-native'
 // 페이지 이동 객체 데이터를 전달해줍니다
 export default function Restaurant2({navigation,route}) {
     const {name2} = route.params;
-    let name = name2.name
-
-
-    const restaurantUrl = "https://map.naver.com/v5/api/search?caller=pcweb&query="+name+"&displayCount=1";
+  
+    const restaurantUrl = "https://map.naver.com/v5/api/search?caller=pcweb&query="+name2+"&displayCount=1";
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);

@@ -1,20 +1,32 @@
 import React,{useState, useEffect} from "react";
 import { Text,StyleSheet , View, ImageBackground, ActivityIndicator, FlatList} from 'react-native';
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import Area from "../components/Area";
 import RestCard2 from "../components/RestCard2"
-
+import {firebase_db} from "../firebaseConfig"
 
 // 페이지 이동 객체 데이터를 전달해줍니다
 export default Main = ({navigation}) => {
-  const area = '역삼동'
-  const restURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20맛집&displayCount=15&lang=ko";
-  const cafeURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20카페&lang=ko";
-  const playURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20놀거리";
+  
+  let area="성북동"
+  let restURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20맛집&displayCount=15&lang=ko";
+  let cafeURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20카페&lang=ko";
+  let playURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20놀거리";
+  
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
   const [data3, setData3] = useState([]);
   useEffect(()=>{
+    // const restURL =""
+    // navigation.addListener('focus', () => {
+    //   firebase_db.ref('users/p28DLnvzlcdt4fW9tfuBpwuk6Ow1/area').once('value').then((snapshot) => {
+    //       //딕셔너리 구조로만 전달되는 데이터
+    //       area = snapshot.val();
+    //       console.log(area)
+    //       restURL=""SS"+area"
+    //   });
+    // });
     fetch(restURL)
       .then((response) => response.json())
       .then((json) => {

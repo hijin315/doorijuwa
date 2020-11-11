@@ -25,7 +25,7 @@ const Login = ({navigation}) => {
         <View style={{ padding: 20, marginTop: 50, flex:1}}>
       <Text style={{textAlignVertical:'center', fontSize:25}}>시작하려면 로그인하세요!🍴</Text>
       
-      <Text style={{ marginTop: 20, fontSize:18, color:'#808080' }}>아이디를 입력해주세요.</Text>
+      <Text style={{ marginTop: 20, fontSize:18, color:'#808080' }}>이메일 주소를 입력해주세요.</Text>
       <View style={{borderRadius:5,borderWidth:1,marginTop:15}}>
       <TextInput
         style={{ marginVertical: 10, fontSize: 17 }}
@@ -50,17 +50,17 @@ const Login = ({navigation}) => {
       <Button
         title="로그인"
         disabled={!loginPW}
-        // onPress={() => navigation.navigate("Main")}
-        //    />
+  
         onPress={async () => {
-              
                 firebase
                 .auth()
                 .signInWithEmailAndPassword(loginID, loginPW)
                 .then(user => {
                  //once we are logged in , we move to the home screen
+                 let uid = user.uid
+                 console.log(uid)
                  navigation.navigate("Main", { user })
-                 console
+                 
                 })
                 .catch(err => {
               Alert.alert("이메일과 비밀번호를 확인하세요!")
@@ -69,6 +69,34 @@ const Login = ({navigation}) => {
           }
         }
         />
+        <View style={{flexDirection:'row', justifyContent:'center', alignContent:'center'}}>
+          <Button
+          title="정보찾기"
+          color='#808080'
+          // onPress={async () => {
+          //         firebase
+          //         .auth()
+          //         .signInWithEmailAndPassword(loginID, loginPW)
+          //         .then(user => {
+          //         //once we are logged in , we move to the home screen
+          //         navigation.navigate("Main", { user })
+          //         console
+          //         })
+          //         .catch(err => {
+          //       Alert.alert("이메일과 비밀번호를 확인하세요!")
+          //         });
+                
+          //   }
+          // }
+          />
+          <Button
+          title="회원가입"
+          disabled={!loginPW}
+          color='#808080'
+          onPress={() => navigation.navigate("Join")}
+                
+          />
+      </View>
     </View>
     </View>)
 }
