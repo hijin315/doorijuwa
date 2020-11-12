@@ -22,7 +22,7 @@ const RestCard = ({img,tag,name,menu,navigation,addr,items}) => {
         ...data,
         user_id      
       }
-      firebase_db.ref('/likes/'+user_id+'/'+ items.id).set(new_like,function(error){
+      firebase_db.ref('/likes/p28DLnvzlcdt4fW9tfuBpwuk6Ow1/likes'+data.id).set(new_like,function(error){
           console.log(error)
           if(error == null){
               //저장에 문제가 없을 경우에만 완료 처리!
