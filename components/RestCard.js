@@ -7,7 +7,7 @@ import { add } from 'react-native-reanimated';
 
 //App.js에서 title값을 넘겨줄 계획입니다.
 //그럼 category 컴포넌트에선 값을 받아 표시해주면 됩니다.
-const RestCard = ({img,tag,name,menu,navigation,addr,items}) => {
+const RestCard = ({img,tag,name,navigation,menu,addr,items}) => {
     let addr2 = ""
     menu = menu.split('|')[0]
     
@@ -22,14 +22,14 @@ const RestCard = ({img,tag,name,menu,navigation,addr,items}) => {
         ...data,
         user_id      
       }
-      firebase_db.ref('/likes/p28DLnvzlcdt4fW9tfuBpwuk6Ow1/likes'+data.id).set(new_like,function(error){
-          console.log(error)
-          if(error == null){
-              //저장에 문제가 없을 경우에만 완료 처리!
-              Alert.alert("찜 완료!💖")
-
-            }
-      });
+      firebase_db.ref('/users/p28DLnvzlcdt4fW9tfuBpwuk6Ow1/likes/'+data.id).set(new_like,function(error){
+        console.log(error)
+        if(error == null){
+            //저장에 문제가 없을 경우에만 완료 처리!
+            Alert.alert("찜 완료!💖")
+  
+          }
+    });
     }
 
     return (

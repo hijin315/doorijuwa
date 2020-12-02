@@ -17,7 +17,8 @@ import Login from './page/Login';
 import Main from './page/Main';
 import List from './page/List';
 import Mypage from './page/Mypage';
-
+import Join from './page/Join';
+import StackNavigator2 from './navigation/StackNavigator2';
 export default function App() {
 
   //로딩중에 대한 상태 관리 === 처음엔 당연히 로딩중이니 값이 true 겠죠?
@@ -50,16 +51,16 @@ export default function App() {
       </>
     );
   }
-  //return <Loading/>
-  // return <Question/>
+  function LoginTabs() {
+    return (
+      <>
+        <StackNavigator2/>
+      </>
+    );
+  }
+
   return isLoading ? <AppLoading startAsync={funcStart} onError={funcError} onFinish={funcFinish} /> : (
-  // <>
-  //   <NavigationContainer>
-  //     <StatusBar style="light" />
-  //     <StackNavigator/>
-  //  </NavigationContainer>
-  // </>
-//  <Login/>
+ 
   <>
     <NavigationContainer>
       <Stack.Navigator
@@ -73,7 +74,7 @@ export default function App() {
         headerTintColor: "#FFFFFF",
         headerBackTitleVisible: false
          }}   >
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login" component={LoginTabs} />
         <Stack.Screen name="Main" component={HomeTabs} />
       </Stack.Navigator>
     </NavigationContainer>

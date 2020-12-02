@@ -3,15 +3,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 //페이지로 만든 컴포넌트들을 불러옵니다
-import Main from '../page/Main'
-import List from '../page/List';
-import SearchList from '../page/SearchList';
-import Mypage from '../page/Mypage';
-import Choose from '../page/Choose';
-import TabNavigator from '../navigation/TabNavigator';
-import Restaurant from '../page/Restaurant';
-import Restaurant2 from '../page/Restaurant2';
-import Like from '../page/Like';
+
 import Login from '../page/Login';
 import Join from '../page/Join';
 
@@ -21,7 +13,7 @@ import Join from '../page/Join';
 const Stack = createStackNavigator();
 
 
-const StackNavigator = ({navigation,route}) =>{
+const StackNavigator2 = ({navigation,route}) =>{
     return (
 
         //책갈피 기능을 하는 네비게이터 엘리먼트를 선언합니다.
@@ -43,19 +35,11 @@ const StackNavigator = ({navigation,route}) =>{
 
             {/* 메인페이지와 푼 문제들을 확인하는 히스토리 페이지가 담겨 있는 탭 페이지, 즉 탭 네비게이터를 넣습니다*/}
             
-            <Stack.Screen name="TabNavigator" component={TabNavigator}/>
-            <Stack.Screen name="Main" component={Main}/>
-            <Stack.Screen name="List" component={List}/>
-            <Stack.Screen name="SearchList" component={SearchList}/>
-            <Stack.Screen name="Mypage" component={Mypage}/>
-            <Stack.Screen name="Choose" component={Choose}/>
-            <Stack.Screen name="Restaurant2" component={Restaurant2}/>
-            <Stack.Screen name="Restaurant" component={Restaurant}/>
-            <Stack.Screen name="Like" component={Like}/>
-            <Stack.Screen name="Join" component={Join}/>
             <Stack.Screen name="Login" component={Login}/>
+            <Stack.Screen name="Join" component={Join}/>
+           
         </Stack.Navigator>
     )
 }
 
-export default StackNavigator;
+export default StackNavigator2;

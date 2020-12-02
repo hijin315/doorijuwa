@@ -50,19 +50,21 @@ const Login = ({navigation}) => {
       <Button
         title="로그인"
         disabled={!loginPW}
-  
+        color='#808080'
         onPress={async () => {
                 firebase
                 .auth()
                 .signInWithEmailAndPassword(loginID, loginPW)
                 .then(user => {
                  //once we are logged in , we move to the home screen
-                 const uid = user.user.uid
-                 navigation.navigate("Main", { uid : uid })
+                 let uid = user.uid
+                 console.log(uid)
+                 navigation.navigate("Main", { user })
                  
                 })
                 .catch(err => {
-              Alert.alert("이메일과 비밀번호를 확인하세요!")
+                    const message = err.message;
+                    Alert.alert(message)
                 });
               
           }
@@ -72,25 +74,24 @@ const Login = ({navigation}) => {
           <Button
           title="정보찾기"
           color='#808080'
-          // onPress={async () => {
-          //         firebase
-          //         .auth()
-          //         .signInWithEmailAndPassword(loginID, loginPW)
-          //         .then(user => {
-          //         //once we are logged in , we move to the home screen
-          //         navigation.navigate("Main", { user })
-          //         console
-          //         })
-          //         .catch(err => {
-          //       Alert.alert("이메일과 비밀번호를 확인하세요!")
-          //         });
+          onPress={async () => {
+                  firebase
+                  .auth()
+                  .signInWithEmailAndPassword(loginID, loginPW)
+                  .then(user => {
+                  //once we are logged in , we move to the home screen
+                  navigation.navigate("Main", { user })
+                  console
+                  })
+                  .catch(err => {
+                Alert.alert("이메일과 비밀번호를 확인하세요!")
+                  });
                 
-          //   }
-          // }
+            }
+          }
           />
           <Button
           title="회원가입"
-          disabled={!loginPW}
           color='#808080'
           onPress={() => navigation.navigate("Join")}
                 

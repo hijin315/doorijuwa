@@ -22,7 +22,7 @@ export default function Mypage({navigation}) {
           <View style={{alignItems:'center'}}>
             <ImageBackground imageStyle = { {  borderRadius : 35  } } source={{uri:"https://firebasestorage.googleapis.com/v0/b/durijuwa-33187.appspot.com/o/KakaoTalk_20201015_061156192.jpg?alt=media&token=6784683a-3bf2-49df-a020-eb386d587535"}} resizeMode="cover" style={styles.restImage} >
             </ImageBackground> 
-            <Text style={{}}>편집</Text>
+            <Text>편집</Text>
           </View>
           <View style={{flexDirection:"row", justifyContent:'center',marginBottom:15}}>
             <Text style={{fontSize:18,fontWeight:'bold', color:'#353535'}}>오희진</Text>
@@ -30,7 +30,7 @@ export default function Mypage({navigation}) {
           </View>
           </View>
           <View style={{backgroundColor:'#fff', flex:1}}>
-            <TouchableOpacity onPress={() => navigation.navigate("ChooseArea", { datas: data })}>
+            <TouchableOpacity onPress={() => navigation.navigate("Like", { datas: data })}>
               <Text style={styles.listcontainer}>🏠 우리동네 설정하기</Text>
               <View style={{borderBottomWidth :1, borderColor:'#E68797'}}></View>
             </TouchableOpacity>

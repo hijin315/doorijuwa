@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from "react";
-import { Text,StyleSheet , View, ImageBackground, ActivityIndicator, FlatList} from 'react-native';
+import {Button,TextInput, Text,StyleSheet , View, ImageBackground, ActivityIndicator, FlatList} from 'react-native';
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import Area from "../components/Area";
 import RestCard2 from "../components/RestCard2"
@@ -7,17 +7,19 @@ import {firebase_db} from "../firebaseConfig"
 
 // 페이지 이동 객체 데이터를 전달해줍니다
 export default Main = ({navigation}) => {
- 
+  
+  const [loginPW, setloginPW] = React.useState();
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
   const [data3, setData3] = useState([]);
+  
   useEffect(()=>{
     navigation.addListener('focus', () => {
       firebase_db.ref('users/p28DLnvzlcdt4fW9tfuBpwuk6Ow1/area').once('value').then((snapshot) => {
           //딕셔너리 구조로만 전달되는 데이터
-          area1 = snapshot.val();
-
+          const area1 = snapshot.val();
+          
           const restURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area1+"+%20맛집&displayCount=15&lang=ko";
           const cafeURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area1+"+%20카페&lang=ko";
           const playURL = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area1+"+%20놀거리";
@@ -49,7 +51,6 @@ export default Main = ({navigation}) => {
     });
       setLoading(false);
   },[]);
-
   return (
     <View style={styles.container}>
     {isLoading ? (
@@ -60,11 +61,47 @@ export default Main = ({navigation}) => {
           <ImageBackground source={{uri:'https://firebasestorage.googleapis.com/v0/b/durijuwa-33187.appspot.com/o/logo%2F%EA%B7%B8%EB%A6%BC04.png?alt=media&token=9409d120-c13e-4b31-ab62-fbfb320e6cb9'}} resizeMode="cover" style={styles.logo} >
           </ImageBackground>
         </View>
+        <View
+          style={{
+            padding: 10,
+            borderRadius:20,
+            borderColor:'#808080',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+             <Text style={{color:'#808080', marginLeft:10, marginTop:4, fontSize:13}}>↓ 지역명 또는 음식 이름을 입력하세요</Text>
+            <View
+             style={{
+              width:370,
+              flexDirection:'row',
+              borderRadius:10,
+              borderWidth:2,
+              marginTop:10,
+              borderColor:'#E68797',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <TextInput
+                autoCapitalize='none'
+                autoCorrect={false}
+                status='info'
+                placeholder='    Ex)송파동 or 오무라이스    '
+                onChangeText={(loginPW) => setloginPW(loginPW)}
+                textStyle={{ color: '#000' }}
+              />
+              <Button
+                title="검색"
+                disabled={!loginPW}
+                color='#000000'
+                onPress={()=>navigation.navigate("SearchList",{area: loginPW})}/>
+            </View>
+        </View>
+        <View style={{borderBottomWidth :1, borderColor:'#E68797'}}></View>
         <ScrollView>
         <View style={styles.container3}>
           <Text style={styles.areafont}>우리동네 추천 장소👍</Text>
           <View style={{flexDirection:'row', alignItems:'center', marginTop:6}}>
-          <Text style={{fontSize:17}}>역삼동</Text>
+      <Text style={{fontSize:17}}>역삼동</Text>
           <TouchableOpacity > 
             <View style={styles.editbtn}>
                 <Text>변경</Text>

@@ -44,23 +44,6 @@ const doCall = (i) => {
 const getMap = (i) => {
     Linking.openURL(i)
 }
-const doLike = (data) => {
-  const user_id = Constants.installationId;   
-  const new_like = {
-    //spread 연산과 객체 리터럴 문법을 오랜만에 한번 써봅니다... 
-    //기억안나시는 분들은 1주차 spread 연산자 부분을 복습!!
-    ...data,
-    user_id      
-  }
-  firebase_db.ref('/likes/'+user_id+'/'+ data.id).set(new_like,function(error){
-      console.log(error)
-      if(error == null){
-          //저장에 문제가 없을 경우에만 완료 처리!
-          Alert.alert("찜 완료!💖")
-
-        }
-  });
-}
   return (
     <View style={styles.container}>
       {isLoading ? (

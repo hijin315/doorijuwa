@@ -36,7 +36,9 @@ const Join = ({navigation}) => {
 
   return (
     <View style={{ padding: 20, marginTop: 50, flex:1}}>
-      <Text style={{textAlignVertical:'center', fontSize:25}}>시작하려면 로그인하세요!</Text>
+      <View style={{backgroundColor:'#E68797'}}>
+      <Text style={{textAlignVertical:'center', fontSize:25}}>전화번호로 회원가입</Text>
+      </View>
       <FirebaseRecaptchaVerifierModal
         ref={recaptchaVerifier}
         firebaseConfig={firebaseConfig}
@@ -124,4 +126,4 @@ const Join = ({navigation}) => {
 
   );
 }
-export default Login;
+export default Join;

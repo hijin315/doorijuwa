@@ -16,7 +16,7 @@ const LikePage = ({navigation}) => {
         const user_id = Constants.installationId; 
         navigation.addListener('focus', () => {
             
-            firebase_db.ref('/likes/'+user_id).once('value').then((snapshot) => {
+            firebase_db.ref('/users/p28DLnvzlcdt4fW9tfuBpwuk6Ow1/likes/').once('value').then((snapshot) => {
                 //딕셔너리 구조로만 전달되는 데이터
                 let likes = snapshot.val();
                 //딕셔너리 구조를 리스트 구조로 변경하여, 실제 화면에선 반복문이 가능하게 변경
@@ -36,7 +36,6 @@ const LikePage = ({navigation}) => {
         {likeState.map((data,i)=>{
              return <RestCardForLike key={i} 
                     data={data}
-                    tag={data.microReview}
                     menu = {data.menu}
                     address = {data.address}
                     name={data.name} 

@@ -4,13 +4,12 @@ import {ActivityIndicator, FlatList, StyleSheet, Text, View,ScrollView } from 'r
 import RestCard from "../components/RestCard"
 import Category from "../components/Category"
 import category from "../category.json"
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 
 
-export default function List({navigation,route}) {
+export default function SearchList({navigation,route}) {
   const { area } = route.params;
-  const restaurantUrl = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"+%20맛집&displayCount=20&lang=ko";
+  const restaurantUrl = "https://map.naver.com/v5/api/search?caller=pcweb&query="+area+"%20맛집&displayCount=30&lang=ko";
 
    //data.json 데이터 구조를 보면 딕셔너리 리스트 복합 구조입니다.
   //question 키값에 문제들이 리스트 형태로 존재합니다.
@@ -41,39 +40,23 @@ export default function List({navigation,route}) {
 
 
   return (
-    <View style={styles.container2}>
+    <View style={styles.container}>
       {isLoading ? (
         <ActivityIndicator/>
       ) : ( 
     <View style={styles.container}>
        <View style={styles.areaInfo}>
-           <Text style={styles.areaname}>{area}</Text>
-           <View style={styles.areaweather}>
-           <Text style={styles.areatemp}>2º</Text>
-           <MaterialCommunityIcons
-            size={40}
-            name="weather-cloudy"
-            color="white"
-          /></View>
+           <Text style={styles.areaname}>검색 결과</Text>
         </View>
-        <View style={styles.categoryInfo}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {categoryState.map((c,i)=>{
-                //컴포넌트에 함수 이름 그대로 넘겨주면 됩니다!
-                return <Category key={i} title={c.title}/>
-                })}
-            </ScrollView>
-        </View>
-
         <ScrollView>
                 <View>
-                {/* <ScrollView style={styles.restWrap}>
+                <ScrollView style={styles.restWrap}>
                 <FlatList 
                     data={data}
                     keyExtractor={({ id }, index) => id}
                     renderItem={({ item }) => (
                         <View>
-                        {item.category !="카페,디저트" && item.category != "카페" && item.category != "베이커리" && item.menuInfo != null && 
+                        {item.menuInfo != null && 
                         <View style={{ paddingBottom: 10 }}>
                                 <RestCard navigation={navigation} items={item} tag={item.microReview} name={item.name} menu={item.menuInfo} img={item.thumUrl} addr={item.address}/>
                         </View>
@@ -81,7 +64,7 @@ export default function List({navigation,route}) {
                         </View>
                     )}
                   />
-                </ScrollView> */}
+                </ScrollView>
              </View>
         </ScrollView>
 

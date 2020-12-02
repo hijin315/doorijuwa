@@ -1,10 +1,9 @@
 import React,{useState,useEffect} from "react";
-import {SafeAreaView, Image,ActivityIndicator, Text, StyleSheet, Platform, View, Alert ,FlatList, TouchableOpacity} from 'react-native';
+import {SafeAreaView, Image,ActivityIndicator,Alert, Text, StyleSheet, Platform, View, ScrollView ,FlatList, TouchableOpacity} from 'react-native';
 import { Share } from "react-native";
 import {Linking} from 'react-native'
 import Constants from 'expo-constants';
 import {firebase_db} from "../firebaseConfig"
-
 
 // 페이지 이동 객체 데이터를 전달해줍니다
 export default function Restaurant({navigation, route}) {
@@ -37,7 +36,7 @@ export default function Restaurant({navigation, route}) {
   },[]);
   const doShare = () => {
     Share.share({
-    message:`"${state.name}"\n대표메뉴 👉 "${state.menu}"\n주소 👉 ${state.addr}\n\n설명 💡 ${state.tag}\n`
+    message:`${state.addr} "${state.menu}" 맛집 👉 ${state.name}\n💡${state.tag}\n💡자세히보기 ▶`
     });
     }
 const doCall = (i) => {
@@ -54,7 +53,7 @@ const doLike = (data) => {
     ...data,
     user_id      
   }
-  firebase_db.ref('/likes/'+user_id+'/'+ data.id).set(new_like,function(error){
+  firebase_db.ref('/users/p28DLnvzlcdt4fW9tfuBpwuk6Ow1/likes/'+data.id).set(new_like,function(error){
       console.log(error)
       if(error == null){
           //저장에 문제가 없을 경우에만 완료 처리!
@@ -63,6 +62,7 @@ const doLike = (data) => {
         }
   });
 }
+
   return (
     <View style={styles.container}>
       {isLoading ? (

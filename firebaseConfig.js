@@ -9,14 +9,14 @@ import "firebase/storage";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBwLCtHOAJdwEdhVbwicVVTN2OWxdMqtqU",
-    authDomain: "doorijuwa.firebaseapp.com",
-    databaseURL: "https://doorijuwa.firebaseio.com",
-    projectId: "doorijuwa",
-    storageBucket: "doorijuwa.appspot.com",
-    messagingSenderId: "1085540564906",
-    appId: "1:1085540564906:web:11b4b1a6c10df82b06b5d3",
-    measurementId: "G-Z0W0VC8KHT"
+  apiKey: "AIzaSyAlml7o0Sx2HcyPyHvcWKFUQfS2PuXgbMM",
+  authDomain: "doorijua-fadbb.firebaseapp.com",
+  databaseURL: "https://doorijua-fadbb.firebaseio.com",
+  projectId: "doorijua-fadbb",
+  storageBucket: "doorijua-fadbb.appspot.com",
+  messagingSenderId: "572709791233",
+  appId: "1:572709791233:web:7a345033430ad70b754200",
+  measurementId: "G-X9FYJ8DELE"
 };
 
 // 파이어베이스 오류가 있을경우를 방지
